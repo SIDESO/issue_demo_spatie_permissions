@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\MyParent;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/test', function(){
+    
+    $var = MyParent::withCount('limitedView')->get(); //not used but creates the issue
+    
+    return[ Auth::user()->roles, App\Models\User::find(Auth::id())->roles ];
+});
