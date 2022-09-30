@@ -16,16 +16,6 @@ class MyParent extends Model
         return $this->hasMany(Child::class);
     }
 
-    public function over18(): HasMany
-    {
-        return $this->hasMany(Child::class)->where('age', '>=', 1);
-    }
-
-    public function under18(): HasMany
-    {
-        return $this->hasMany(Child::class)->where('age', '<', 18);
-    }
-
     public function limitedView(){
         $query = $this->children();
 
